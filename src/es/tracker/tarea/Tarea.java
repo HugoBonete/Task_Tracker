@@ -84,7 +84,6 @@ public class Tarea
 		arrTarea.get(i).setDescription(newDesc);
 		arrTarea.get(i).setUpdatedAt(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Json.guardarDatos(arrTarea);
-		
 	}
 	
 	public static void addTask(String desc)
@@ -98,6 +97,7 @@ public class Tarea
 	{
 		int i = checkId(id);
 		arrTarea.remove(i);
+		Json.guardarDatos(arrTarea);
 	}
 	
 	public static void changeState(int input, int id)
@@ -133,10 +133,13 @@ public class Tarea
 		int cnt = 0;
 		for(int i = 0; i < arrTarea.size(); i++)
 		{
-			if(arrTarea.get(i).getStatus() == State.values()[input])
+			if(input == 3)
 			{
-				 System.out.println(arrTarea.get(i).toString());
-				arrTarea.toString();
+				System.out.println(arrTarea.get(i).toString());
+				cnt++;
+			}else if(arrTarea.get(i).getStatus() == State.values()[input])
+			{
+				System.out.println(arrTarea.get(i).toString());
 				cnt++;
 			}
 		}

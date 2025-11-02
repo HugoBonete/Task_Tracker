@@ -118,7 +118,12 @@ public class Menus
 	
 	private static void menuListTask()
 	{
-		int input = Integer.parseInt(Escanear("Please type the status of the tasks you want to see: 0 -> Todo, 1 -> InProgress or  2 -> Done\n"));
+		int input = Integer.parseInt(Escanear("Please type the status of the tasks you want to see: 0 -> Todo, 1 -> InProgress,  2 -> Done or 3 -> All Tasks\n"));
+		if(input > 3 || input < 0)
+		{
+			System.out.println("The input was not valid please try again");
+			menuListTask();
+		}
 		Tarea.listTasks(input);
 		iniciarPrograma();
 	}
