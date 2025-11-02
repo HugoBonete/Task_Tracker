@@ -1,12 +1,19 @@
 [
   {
-    "id_tarea": 0,
-    "description": "miau",
+    "id_tarea": 2,
+    "description": "Hola que tal estas",
+    "status": "Done"
+  },
+  {
+    "id_tarea": 3,
+    "description": "Miau",
     "status": "Todo"
   },
   {
-    "id_tarea": 2,
-    "description": "Hola que tal estas",
-    "status": "Todo"
+    "id_tarea": 4,
+    "description": "",
+    "status": "Todo",
+    "createdAt": "02/11/2025",
+    "updatedAt": "02/11/2025"
   }
 ]

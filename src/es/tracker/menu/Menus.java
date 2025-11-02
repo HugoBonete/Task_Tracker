@@ -47,9 +47,20 @@ public class Menus
 	
 	private static void menuAddTask()
 	{
-		String input = Escanear("Please give a description to the new task\n");
-		Tarea.addTask(input);
-		iniciarPrograma();
+		try {
+			String input = Escanear("Please give a description to the new task\n");
+			if(input.isEmpty())
+			{
+				input = Escanear("The name can not be empty please try again.");
+			}
+			Tarea.addTask(input);
+			iniciarPrograma();
+		}catch(Exception e)
+		{
+			System.out.println("Something went wrong please try again");
+			iniciarPrograma();
+		}
+		
 	}
 	
 	private static void menuUpdateTask()
@@ -112,7 +123,7 @@ public class Menus
 		iniciarPrograma();
 	}
 	
-	private static String Escanear(String cadena) 
+	public static String Escanear(String cadena) 
 	{
 		System.out.println(cadena);
 		return (scanIn.nextLine());

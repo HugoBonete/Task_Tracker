@@ -1,7 +1,9 @@
 package es.tracker.tarea;
-
 import java.util.ArrayList;
 import es.tracker.json.Json;
+import es.tracker.menu.Menus;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Tarea 
 {
@@ -21,7 +23,9 @@ public class Tarea
 	{
 		this.description = descripcion;
 		this.id_tarea = contadorId++;
+		this.createdAt = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		this.status = State.Todo;
+		this.updatedAt = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	
 	public ArrayList<Tarea> getArrTarea()
@@ -49,7 +53,7 @@ public class Tarea
 		this.status = status;
 	}
 
-	public String getCreatedAt() 
+	public String getCreatedAt()
 	{
 		return createdAt;
 	}
@@ -78,6 +82,7 @@ public class Tarea
 	{
 		int i = checkId(id);
 		arrTarea.get(i).setDescription(newDesc);
+		arrTarea.get(i).setUpdatedAt(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Json.guardarDatos(arrTarea);
 		
 	}
@@ -101,9 +106,11 @@ public class Tarea
 		if(input == 1)
 		{
 			arrTarea.get(i).setStatus(State.InProgress);
+			arrTarea.get(i).setUpdatedAt(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		}else if(input == 2)
 		{
 			arrTarea.get(i).setStatus(State.Done);
+			arrTarea.get(i).setUpdatedAt(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		}
 		Json.guardarDatos(arrTarea);
 	}
@@ -138,12 +145,14 @@ public class Tarea
 			System.out.println("There is not any task in the '" + State.values()[input] + "' state.");
 		}
 		
+		Menus.Escanear("\nPulse ENTER para continuar...");
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Id Tarea: " + id_tarea + "|| description: " + description + "|| status: " + status + "|| createdAt: "
-				+ createdAt + "|| updatedAt: " + updatedAt + "\n";
+		return "Id Tarea: " + id_tarea + "|| Description: " + description + "|| Status: " + status + "|| Created at: "
+				+ createdAt + "|| Last updated at: " + updatedAt + "\n";
 	}
 	
 }
